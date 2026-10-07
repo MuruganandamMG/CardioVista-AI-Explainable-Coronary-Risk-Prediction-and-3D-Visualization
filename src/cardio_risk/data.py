@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import math
 from pathlib import Path
 
 import pandas as pd
@@ -55,8 +56,25 @@ def create_split(y: pd.DataFrame, dataset_hash: str) -> dict:
     return {"sha256": dataset_hash, "seed": 42, "development": sorted(map(int, development)), "test": sorted(map(int, test)), "class_counts": counts}
 
 
-def load_split(path, dataset_hash):
+def load_split(path, dataset_hash, y=None):
     split = json.loads(Path(path).read_text(encoding="utf-8"))
     if split["sha256"] != dataset_hash:
         raise ValueError("Dataset hash differs from saved partition")
+    try:
+        development, test = split["development"], split["test"]
+        total = len(y) if y is not None else 303
+        expected_test = math.ceil(.2*total)
+        ids = development + test
+        valid = (split["seed"] == 42 and len(development) == total-expected_test and len(test) == expected_test and all(type(i) is int for i in ids) and len(set(ids)) == total and sorted(ids) == list(range(total)))
+        for partition in ("development", "test"):
+            counts = split["class_counts"][partition]
+            valid = valid and set(counts) == set(TARGET_COLUMNS)
+            for count in counts.values():
+                valid = valid and set(count) == {"0", "1"} and all(type(n) is int and n >= (5 if partition == "test" else 1) for n in count.values()) and sum(count.values()) == len(split[partition])
+        if y is not None:
+            valid = valid and split == create_split(y, dataset_hash)
+        if not valid:
+            raise ValueError("Invalid saved partition")
+    except (KeyError, TypeError, ValueError) as error:
+        raise ValueError("Invalid saved partition integrity or class support") from error
     return split

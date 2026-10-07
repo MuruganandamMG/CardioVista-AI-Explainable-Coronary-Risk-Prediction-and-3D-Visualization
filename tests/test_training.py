@@ -86,3 +86,40 @@ def test_search_folds_exclude_holdout(data):
         assert set(fold["train"] + fold["validation"]).isdisjoint(split["test"])
         seen.extend(fold["validation"])
     assert sorted(seen) == split["development"]
+
+
+@pytest.mark.parametrize("damage", ["overlap", "duplicate", "missing", "seed", "counts", "string_id"])
+def test_saved_partition_integrity(tmp_path, data, damage):
+    import copy
+    from cardio_risk.data import load_split, write_json
+    _, _, _, good = data
+    split = copy.deepcopy(good)
+    if damage == "overlap": split["development"][0] = split["test"][0]
+    if damage == "duplicate": split["development"][0] = split["development"][1]
+    if damage == "missing": split["test"].pop()
+    if damage == "seed": split["seed"] = 99
+    if damage == "counts": split["class_counts"]["test"]["cad"]["1"] = 0
+    if damage == "string_id": split["test"][0] = str(split["test"][0])
+    write_json(tmp_path / "split.json", split)
+    with pytest.raises(ValueError, match="partition"):
+        load_split(tmp_path / "split.json", good["sha256"])
+
+
+def test_fit_selected_trains_independent_targets_and_nested_subsets(data, monkeypatch):
+    from cardio_risk.train import fit_selected
+    from cardio_risk.preprocessing import ClinicalTransform
+    X, y, schema, split = data
+    memberships = []
+    original_fit = ClinicalTransform.fit
+    def record_fit(self, X_fit, y_fit=None):
+        memberships.append(set(X_fit.index))
+        return original_fit(self, X_fit, y_fit)
+    monkeypatch.setattr(ClinicalTransform, "fit", record_fit)
+    selection = {"selected": {target: {"family": "logistic", "params": {"C": .1}} for target in y}}
+    fitted = fit_selected(X, y, selection, schema)
+    assert len({id(record["estimator"]) for record in fitted["targets"].values()}) == 4
+    assert not np.array_equal(fitted["targets"]["cad"]["base_estimator"].named_steps["model"].coef_, fitted["targets"]["lad"]["base_estimator"].named_steps["model"].coef_)
+    assert all(ids <= set(split["development"]) for ids in memberships)
+    assert all(ids.isdisjoint(split["test"]) for ids in memberships)
+    assert any(len(ids) < 140 for ids in memberships)  # Inner calibration refits within outer training subsets.
+    assert list(fitted["oof"].index) == split["development"]

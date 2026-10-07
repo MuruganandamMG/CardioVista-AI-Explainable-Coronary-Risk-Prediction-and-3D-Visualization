@@ -22,7 +22,7 @@ def split_data(data):
         raise ValueError("Duplicate patients require a grouped split")
     path = Path("data/processed/split.json")
     if path.exists():
-        split = load_split(path, details["sha256"])
+        split = load_split(path, details["sha256"], y)
     else:
         split = create_split(y, details["sha256"])
         write_json(path, split)
@@ -38,7 +38,7 @@ def train(config_path, run_id):
     if artifact_dir.exists() or report_dir.exists():
         raise FileExistsError("Run already exists; choose a new run ID")
     X, y, details = load_dataset(Path(config["data"]))
-    split = load_split("data/processed/split.json", details["sha256"])
+    split = load_split("data/processed/split.json", details["sha256"], y)
     ids = split["development"]
     schema = build_schema(X.loc[ids])
     report_dir.mkdir(parents=True)
@@ -52,6 +52,8 @@ def train(config_path, run_id):
     fitted.pop("oof").to_csv(report_dir / "development_oof.csv", index_label="row_id")
     metadata = {"model_version": run_id, "dataset_hash": details["sha256"], "split": split, "config": config}
     save_bundle(fitted, artifact_dir, metadata)
+    from .explain import summarize_global
+    write_json(report_dir / "global_attributions.json", summarize_global(fitted, X.loc[ids]))
     write_json(report_dir / "selection.json", {target: {k: v for k, v in record.items() if k not in ("estimator", "base_estimator", "background")} for target, record in fitted["targets"].items()})
     print(f"Frozen bundle saved: {artifact_dir}")
 
@@ -84,7 +86,7 @@ def main():
         from .evaluate import evaluate_holdout
         bundle = load_bundle(Path("artifacts") / args.run_id)
         X, y, details = load_dataset(Path(bundle["metadata"]["config"]["data"]))
-        split = load_split("data/processed/split.json", details["sha256"])
+        split = load_split("data/processed/split.json", details["sha256"], y)
         if split != bundle["metadata"]["split"]:
             raise ValueError("Current split differs from frozen artifact")
         ids = split["test"]

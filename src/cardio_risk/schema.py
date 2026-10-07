@@ -22,11 +22,18 @@ class InputError(ValueError):
         super().__init__(str(errors))
 
 
+def finite_number(value):
+    try:
+        return not isinstance(value, bool) and isinstance(value, Real) and math.isfinite(value)
+    except (OverflowError, TypeError, ValueError):
+        return False
+
+
 def normalize_category(name, value):
     if pd.isna(value):
         return None
     if name in ("Function Class", "Region RWMA") and isinstance(value, Real) and not isinstance(value, bool):
-        return str(int(value)) if math.isfinite(value) and value == int(value) else str(value)
+        return str(int(value)) if finite_number(value) and value == int(value) else "__INVALID__"
     value = str(value).strip()
     if name == "Sex":
         return {"fmale": "Female", "female": "Female", "male": "Male"}.get(value.lower(), value)
@@ -85,7 +92,7 @@ def validate_record(features: dict, schema: dict) -> tuple[pd.DataFrame, dict]:
                 errors.append({"field": name, "message": "Invalid category", "allowed_values": spec["allowed_values"]})
             values[name] = normalized
         else:
-            if isinstance(value, bool) or not isinstance(value, Real) or not math.isfinite(value):
+            if not finite_number(value):
                 errors.append({"field": name, "message": "Expected a finite number"})
                 continue
             if spec["type"] == "binary" and value not in (0, 1):
