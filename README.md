@@ -12,6 +12,54 @@ Dataset creators: R. Alizadehsani, M. Roshanzamir, and Z. Sani. Dataset license:
 
 `Cath`, `LAD`, `LCX`, and `RCA` are always excluded from predictors. The original file is preserved. The audit reports one inconsistent CAD/vessel label record without relabeling it; `Exertional CP` is constant, and training-only filters remove constant predictors. `Fmale` is normalized to `Female`. Extremely rare categories have limited supporting data.
 
+## ML pipeline
+
+```mermaid
+flowchart TD
+    A[Original workbook: 303 patients] --> B[Audit and separate 55 inputs from four targets]
+    B --> C[Fixed split: 242 development / 61 test]
+    C --> D[Five-fold development cross-validation]
+    D --> E[Fold-local preprocessing and candidate training]
+    E --> F[Select model independently for CAD, LAD, LCX, RCA]
+    F --> G[Compare sigmoid calibration and select decision thresholds]
+    G --> H[Fit selected models on all 242 development patients]
+    H --> I[Save frozen model bundle]
+    I --> J[One held-out evaluation: metrics and plots]
+    I --> K[Validated prediction API and score explanations]
+```
+
+The development/test split is approximately **80% / 20%**. Within each cross-validation fold, approximately **64% of the full dataset trains the model, 16% validates it, and 20% remains held out**. Validation membership rotates across five folds; there is no separate permanent 16% validation partition. The final selected models are fitted on all 242 development patients, leaving the same 61 test patients excluded from training.
+
+| Stage | Implementation |
+| --- | --- |
+| Data audit | Check workbook structure, labels, missing values, duplicates, constants, and label inconsistencies; preserve the raw source. |
+| Feature boundary | Use 55 approved clinical inputs; exclude `Cath`, `LAD`, `LCX`, `RCA`, identifiers, and target-derived features. |
+| Shared preprocessing | Normalize categories, remove constants learned from the training fold, fill numeric nulls with training medians, and fill categorical nulls with a missing sentinel. |
+| Logistic regression | Standardize numeric inputs and one-hot encode categories in a scikit-learn pipeline. |
+| CatBoost | Use native categorical inputs and gradient-boosted decision trees; no numeric scaling is required. |
+| Candidate search | Per target: one dummy baseline, six logistic configurations, and eight CatBoost configurations; 60 candidates across four targets and 300 five-fold fits before calibration comparisons and final fits. |
+| Hyperparameters | Logistic `C`: 0.1, 1, 10, with/without balanced class weights; CatBoost depth: 3 or 5, iterations: 200 or 400, with/without balanced class weights. |
+| Model selection | Use development ROC-AUC, simplicity/tie rules, and log loss. Select each target independently. |
+| Calibration and thresholds | Compare nested sigmoid calibration using out-of-fold predictions; choose thresholds by development out-of-fold F1. The current baseline retained no calibration for all four targets. |
+| Persistence | Save four models together with their preprocessing, thresholds, schema, runtime versions, and SHA256 integrity metadata. |
+| Inference | Validate the complete input, load the saved bundle, and return four probabilities, labels, quality flags, and optional explanations. |
+
+Training uses **CPU**. CAD and LAD selected logistic regression; LCX and RCA selected CatBoost. The complete training configuration is in [configs/training.json](configs/training.json).
+
+## ML tools and libraries
+
+| Tool | Role in this project |
+| --- | --- |
+| Python 3.12 | Training, evaluation, inference, and command-line workflow |
+| pandas and openpyxl | Read the Excel dataset and handle tabular clinical inputs |
+| NumPy and SciPy | Numerical operations, probability transforms, and explanation calculations |
+| scikit-learn | Pipelines, preprocessing, logistic regression, dummy baseline, cross-validation, calibration, and metrics |
+| CatBoost | Boosted-tree classification with categorical features and native tree SHAP explanations |
+| Matplotlib | Saved confusion-matrix, ROC, precision-recall, and reliability plots |
+| joblib | Serialize and load trusted model bundles |
+| FastAPI, Pydantic, and Uvicorn | Validated local prediction API, schema endpoints, and API explorer |
+| pytest | Regression checks for data boundaries, leakage prevention, inference, explanations, and API behavior |
+
 ## Setup on Windows
 
 Use Python 3.12 for the tested dependency lockfile and saved models. From this project folder:
@@ -45,12 +93,12 @@ Development scores are model-selection estimates. Final held-out reports include
 
 The exact saved bundle was evaluated once on 61 held-out patients:
 
-| Target | Model | Accuracy | Recall | Specificity | ROC-AUC |
-|---|---|---:|---:|---:|---:|
-| CAD | Logistic regression | 78.7% | 79.1% | 77.8% | 0.913 |
-| LAD | Logistic regression | 72.1% | 97.1% | 40.7% | 0.817 |
-| LCX | CatBoost | 60.7% | 76.9% | 48.6% | 0.702 |
-| RCA | CatBoost | 62.3% | 85.0% | 51.2% | 0.749 |
+| Target | Model | Accuracy | Precision | Recall | F1 | Specificity | ROC-AUC |
+|---|---|---:|---:|---:|---:|---:|---:|
+| CAD | Logistic regression | 78.69% | 89.47% | 79.07% | 83.95% | 77.78% | 0.9134 |
+| LAD | Logistic regression | 72.13% | 67.35% | 97.06% | 79.52% | 40.74% | 0.8170 |
+| LCX | CatBoost | 60.66% | 52.63% | 76.92% | 62.50% | 48.57% | 0.7022 |
+| RCA | CatBoost | 62.30% | 45.95% | 85.00% | 59.65% | 51.22% | 0.7488 |
 
 The vessel operating points favor recall and produce many false positives. RCA accuracy is below its majority-class dummy baseline (67.2%), despite better ROC-AUC, positive-case recall, and probability loss. These thresholds were selected on development data, not adjusted after seeing these results. All four retained uncalibrated probabilities under the predeclared calibration rule.
 
@@ -103,6 +151,23 @@ Invoke-RestMethod -Uri 'http://127.0.0.1:8000/predict' -Method Post -ContentType
 Invalid requests return 422. Missing or incompatible model artifacts prevent startup. There are no fabricated fallback predictions, external services, or database requirements.
 
 ## Explanations and visualization handoff
+
+### Available ML evaluation visualizations
+
+Each target has a saved four-panel evaluation figure:
+
+| Plot | What it shows |
+| --- | --- |
+| Confusion matrix | True/false positive and negative counts at the selected threshold |
+| ROC curve | Sensitivity versus false-positive rate across thresholds, with ROC-AUC |
+| Precision-recall curve | Positive-prediction precision versus positive-case recall |
+| Reliability plot | Observed positive frequency versus predicted probability across bins |
+
+Open the generated figures: [CAD](reports/baseline-v1/figures/cad_evaluation.png), [LAD](reports/baseline-v1/figures/lad_evaluation.png), [LCX](reports/baseline-v1/figures/lcx_evaluation.png), and [RCA](reports/baseline-v1/figures/rca_evaluation.png). These are static Matplotlib plots generated during held-out evaluation. Read the existing figures rather than rerunning an already completed evaluation.
+
+Development-wide feature attribution rankings are saved in [global_attributions.json](reports/baseline-v1/global_attributions.json), using mean absolute model-score contributions. Per-input explanations are available through the CLI `--explain` option and API `include_explanations`; an interactive attribution chart has not yet been implemented.
+
+### Model explanations and future 3D integration
 
 CatBoost uses native tree SHAP. Logistic regression uses exact linear contributions relative to the mean transformed development vector. One-hot contributions are aggregated back to original fields, and every full contribution vector is checked for score additivity. Explanations contain the base score, model log-odds, underlying score probability, final served probability, and top five contributors. When calibration is active, contributions explain the underlying log-odds rather than the calibrated probability. Feature attribution does not establish causation.
 
