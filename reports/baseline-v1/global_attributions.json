@@ -1,0 +1,910 @@
+{
+  "cad": {
+    "method": "linear_score_contribution",
+    "population": "development",
+    "scale": "base_model_log_odds",
+    "features": [
+      {
+        "feature": "Typical Chest Pain",
+        "mean_absolute_contribution": 0.953832765640097
+      },
+      {
+        "feature": "Age",
+        "mean_absolute_contribution": 0.415684230509594
+      },
+      {
+        "feature": "DM",
+        "mean_absolute_contribution": 0.3445854656678023
+      },
+      {
+        "feature": "HTN",
+        "mean_absolute_contribution": 0.3197421811822334
+      },
+      {
+        "feature": "Tinversion",
+        "mean_absolute_contribution": 0.3035251002638303
+      },
+      {
+        "feature": "ESR",
+        "mean_absolute_contribution": 0.24747320009456056
+      },
+      {
+        "feature": "FH",
+        "mean_absolute_contribution": 0.23883286987633467
+      },
+      {
+        "feature": "TG",
+        "mean_absolute_contribution": 0.2249347042936434
+      },
+      {
+        "feature": "PR",
+        "mean_absolute_contribution": 0.19593355233634202
+      },
+      {
+        "feature": "EF-TTE",
+        "mean_absolute_contribution": 0.19362949286181322
+      },
+      {
+        "feature": "Atypical",
+        "mean_absolute_contribution": 0.1933849997649034
+      },
+      {
+        "feature": "Dyspnea",
+        "mean_absolute_contribution": 0.19003120103652482
+      },
+      {
+        "feature": "Region RWMA",
+        "mean_absolute_contribution": 0.18877308675605153
+      },
+      {
+        "feature": "BP",
+        "mean_absolute_contribution": 0.18006432395673494
+      },
+      {
+        "feature": "Sex",
+        "mean_absolute_contribution": 0.1443544672178974
+      },
+      {
+        "feature": "K",
+        "mean_absolute_contribution": 0.12039061123818023
+      },
+      {
+        "feature": "Neut",
+        "mean_absolute_contribution": 0.1199842347133256
+      },
+      {
+        "feature": "FBS",
+        "mean_absolute_contribution": 0.11441374694445125
+      },
+      {
+        "feature": "HDL",
+        "mean_absolute_contribution": 0.11084975270204676
+      },
+      {
+        "feature": "CR",
+        "mean_absolute_contribution": 0.10988443917328573
+      },
+      {
+        "feature": "St Elevation",
+        "mean_absolute_contribution": 0.10501210520515276
+      },
+      {
+        "feature": "LDL",
+        "mean_absolute_contribution": 0.09146561705967844
+      },
+      {
+        "feature": "BMI",
+        "mean_absolute_contribution": 0.08468234656616602
+      },
+      {
+        "feature": "WBC",
+        "mean_absolute_contribution": 0.0797916162604034
+      },
+      {
+        "feature": "PLT",
+        "mean_absolute_contribution": 0.07576369496885495
+      },
+      {
+        "feature": "HB",
+        "mean_absolute_contribution": 0.06824726674164772
+      },
+      {
+        "feature": "VHD",
+        "mean_absolute_contribution": 0.06775869592809733
+      },
+      {
+        "feature": "Current Smoker",
+        "mean_absolute_contribution": 0.0652282846745278
+      },
+      {
+        "feature": "Q Wave",
+        "mean_absolute_contribution": 0.06414372609660388
+      },
+      {
+        "feature": "St Depression",
+        "mean_absolute_contribution": 0.05639819187605313
+      },
+      {
+        "feature": "Na",
+        "mean_absolute_contribution": 0.04378419276223685
+      },
+      {
+        "feature": "BUN",
+        "mean_absolute_contribution": 0.04032134641600925
+      },
+      {
+        "feature": "Nonanginal",
+        "mean_absolute_contribution": 0.030531212474297787
+      },
+      {
+        "feature": "Obesity",
+        "mean_absolute_contribution": 0.02869199296269717
+      },
+      {
+        "feature": "BBB",
+        "mean_absolute_contribution": 0.028594164205536527
+      },
+      {
+        "feature": "Weight",
+        "mean_absolute_contribution": 0.02807883108978717
+      },
+      {
+        "feature": "Systolic Murmur",
+        "mean_absolute_contribution": 0.027092072988047687
+      },
+      {
+        "feature": "Length",
+        "mean_absolute_contribution": 0.02440521978805185
+      },
+      {
+        "feature": "LVH",
+        "mean_absolute_contribution": 0.024234557397787463
+      },
+      {
+        "feature": "Edema",
+        "mean_absolute_contribution": 0.020654715041438204
+      },
+      {
+        "feature": "Diastolic Murmur",
+        "mean_absolute_contribution": 0.015279303572446404
+      },
+      {
+        "feature": "EX-Smoker",
+        "mean_absolute_contribution": 0.014246873460509521
+      },
+      {
+        "feature": "DLP",
+        "mean_absolute_contribution": 0.012126843323293005
+      },
+      {
+        "feature": "Function Class",
+        "mean_absolute_contribution": 0.010634466544287255
+      },
+      {
+        "feature": "Airway disease",
+        "mean_absolute_contribution": 0.006527700020305664
+      },
+      {
+        "feature": "Poor R Progression",
+        "mean_absolute_contribution": 0.004602343586613693
+      },
+      {
+        "feature": "Lung rales",
+        "mean_absolute_contribution": 0.003410066915444162
+      },
+      {
+        "feature": "Lymph",
+        "mean_absolute_contribution": 0.0029966288320269754
+      },
+      {
+        "feature": "CRF",
+        "mean_absolute_contribution": 0.0019924903611146408
+      },
+      {
+        "feature": "CVA",
+        "mean_absolute_contribution": 0.001850760972469161
+      },
+      {
+        "feature": "Weak Peripheral Pulse",
+        "mean_absolute_contribution": 0.0017318491730952785
+      },
+      {
+        "feature": "CHF",
+        "mean_absolute_contribution": 0.00021146092199871944
+      },
+      {
+        "feature": "Thyroid Disease",
+        "mean_absolute_contribution": 0.00017387068341830696
+      },
+      {
+        "feature": "LowTH Ang",
+        "mean_absolute_contribution": 1.4197593218214957e-05
+      },
+      {
+        "feature": "Exertional CP",
+        "mean_absolute_contribution": 0.0
+      }
+    ]
+  },
+  "lad": {
+    "method": "linear_score_contribution",
+    "population": "development",
+    "scale": "base_model_log_odds",
+    "features": [
+      {
+        "feature": "Typical Chest Pain",
+        "mean_absolute_contribution": 0.7412027048806705
+      },
+      {
+        "feature": "Age",
+        "mean_absolute_contribution": 0.38331712251160277
+      },
+      {
+        "feature": "EF-TTE",
+        "mean_absolute_contribution": 0.3044502648595294
+      },
+      {
+        "feature": "Region RWMA",
+        "mean_absolute_contribution": 0.24271562989143625
+      },
+      {
+        "feature": "Tinversion",
+        "mean_absolute_contribution": 0.2402399629570035
+      },
+      {
+        "feature": "LDL",
+        "mean_absolute_contribution": 0.17612590558717908
+      },
+      {
+        "feature": "FBS",
+        "mean_absolute_contribution": 0.17549544597568256
+      },
+      {
+        "feature": "HTN",
+        "mean_absolute_contribution": 0.16394440661239182
+      },
+      {
+        "feature": "PR",
+        "mean_absolute_contribution": 0.15474318833471695
+      },
+      {
+        "feature": "FH",
+        "mean_absolute_contribution": 0.15246508490541352
+      },
+      {
+        "feature": "Lymph",
+        "mean_absolute_contribution": 0.13624967736969604
+      },
+      {
+        "feature": "St Elevation",
+        "mean_absolute_contribution": 0.1358330171467959
+      },
+      {
+        "feature": "HB",
+        "mean_absolute_contribution": 0.1342743204639053
+      },
+      {
+        "feature": "Sex",
+        "mean_absolute_contribution": 0.12794808264749713
+      },
+      {
+        "feature": "ESR",
+        "mean_absolute_contribution": 0.127648450394153
+      },
+      {
+        "feature": "Current Smoker",
+        "mean_absolute_contribution": 0.12666967304329593
+      },
+      {
+        "feature": "BP",
+        "mean_absolute_contribution": 0.0989601279478026
+      },
+      {
+        "feature": "Q Wave",
+        "mean_absolute_contribution": 0.09149422492729947
+      },
+      {
+        "feature": "PLT",
+        "mean_absolute_contribution": 0.09019910197949196
+      },
+      {
+        "feature": "Dyspnea",
+        "mean_absolute_contribution": 0.08707106635185563
+      },
+      {
+        "feature": "CR",
+        "mean_absolute_contribution": 0.08542516322646791
+      },
+      {
+        "feature": "Atypical",
+        "mean_absolute_contribution": 0.07531644650782193
+      },
+      {
+        "feature": "WBC",
+        "mean_absolute_contribution": 0.07474883306186356
+      },
+      {
+        "feature": "Function Class",
+        "mean_absolute_contribution": 0.06326423453105966
+      },
+      {
+        "feature": "St Depression",
+        "mean_absolute_contribution": 0.058079359721572285
+      },
+      {
+        "feature": "K",
+        "mean_absolute_contribution": 0.05660259896732692
+      },
+      {
+        "feature": "Edema",
+        "mean_absolute_contribution": 0.055776900603658745
+      },
+      {
+        "feature": "DM",
+        "mean_absolute_contribution": 0.05464178620111448
+      },
+      {
+        "feature": "DLP",
+        "mean_absolute_contribution": 0.05311449871462825
+      },
+      {
+        "feature": "TG",
+        "mean_absolute_contribution": 0.05253978311063471
+      },
+      {
+        "feature": "VHD",
+        "mean_absolute_contribution": 0.04877113938845123
+      },
+      {
+        "feature": "Na",
+        "mean_absolute_contribution": 0.047636779143281245
+      },
+      {
+        "feature": "Neut",
+        "mean_absolute_contribution": 0.04389028548095466
+      },
+      {
+        "feature": "Length",
+        "mean_absolute_contribution": 0.039891765880025326
+      },
+      {
+        "feature": "EX-Smoker",
+        "mean_absolute_contribution": 0.028252360461042323
+      },
+      {
+        "feature": "BUN",
+        "mean_absolute_contribution": 0.02739631833076967
+      },
+      {
+        "feature": "Nonanginal",
+        "mean_absolute_contribution": 0.02242318942654353
+      },
+      {
+        "feature": "LVH",
+        "mean_absolute_contribution": 0.022315947964459553
+      },
+      {
+        "feature": "Obesity",
+        "mean_absolute_contribution": 0.02107321723566707
+      },
+      {
+        "feature": "BMI",
+        "mean_absolute_contribution": 0.019214109454111013
+      },
+      {
+        "feature": "BBB",
+        "mean_absolute_contribution": 0.01723894957926479
+      },
+      {
+        "feature": "Diastolic Murmur",
+        "mean_absolute_contribution": 0.011080879405708906
+      },
+      {
+        "feature": "CVA",
+        "mean_absolute_contribution": 0.009409754565092611
+      },
+      {
+        "feature": "Weak Peripheral Pulse",
+        "mean_absolute_contribution": 0.008356501977443758
+      },
+      {
+        "feature": "Thyroid Disease",
+        "mean_absolute_contribution": 0.007609355208884525
+      },
+      {
+        "feature": "Systolic Murmur",
+        "mean_absolute_contribution": 0.0069006328431469146
+      },
+      {
+        "feature": "HDL",
+        "mean_absolute_contribution": 0.006573707752923948
+      },
+      {
+        "feature": "Lung rales",
+        "mean_absolute_contribution": 0.004440132193293062
+      },
+      {
+        "feature": "CRF",
+        "mean_absolute_contribution": 0.004197991001651764
+      },
+      {
+        "feature": "Airway disease",
+        "mean_absolute_contribution": 0.004014144602670247
+      },
+      {
+        "feature": "Poor R Progression",
+        "mean_absolute_contribution": 0.003225297811078543
+      },
+      {
+        "feature": "Weight",
+        "mean_absolute_contribution": 0.0005211066382921304
+      },
+      {
+        "feature": "CHF",
+        "mean_absolute_contribution": 0.00015771545687382976
+      },
+      {
+        "feature": "LowTH Ang",
+        "mean_absolute_contribution": 9.60847683869152e-05
+      },
+      {
+        "feature": "Exertional CP",
+        "mean_absolute_contribution": 0.0
+      }
+    ]
+  },
+  "lcx": {
+    "method": "tree_shap",
+    "population": "development",
+    "scale": "base_model_log_odds",
+    "features": [
+      {
+        "feature": "Age",
+        "mean_absolute_contribution": 0.3326556156099172
+      },
+      {
+        "feature": "Typical Chest Pain",
+        "mean_absolute_contribution": 0.3246063793558822
+      },
+      {
+        "feature": "CR",
+        "mean_absolute_contribution": 0.263578080647734
+      },
+      {
+        "feature": "FBS",
+        "mean_absolute_contribution": 0.1964886426750246
+      },
+      {
+        "feature": "PLT",
+        "mean_absolute_contribution": 0.17934702775754152
+      },
+      {
+        "feature": "HDL",
+        "mean_absolute_contribution": 0.13659944423465506
+      },
+      {
+        "feature": "EF-TTE",
+        "mean_absolute_contribution": 0.1334713147895296
+      },
+      {
+        "feature": "Length",
+        "mean_absolute_contribution": 0.11417118094863174
+      },
+      {
+        "feature": "TG",
+        "mean_absolute_contribution": 0.09486020954456759
+      },
+      {
+        "feature": "BP",
+        "mean_absolute_contribution": 0.08804774706895821
+      },
+      {
+        "feature": "Na",
+        "mean_absolute_contribution": 0.08587255900541917
+      },
+      {
+        "feature": "Lymph",
+        "mean_absolute_contribution": 0.07683887013790545
+      },
+      {
+        "feature": "K",
+        "mean_absolute_contribution": 0.07490124118350651
+      },
+      {
+        "feature": "ESR",
+        "mean_absolute_contribution": 0.07332200907322314
+      },
+      {
+        "feature": "HB",
+        "mean_absolute_contribution": 0.07275037853005434
+      },
+      {
+        "feature": "LDL",
+        "mean_absolute_contribution": 0.06518207158469588
+      },
+      {
+        "feature": "BBB",
+        "mean_absolute_contribution": 0.05859732813506002
+      },
+      {
+        "feature": "BMI",
+        "mean_absolute_contribution": 0.05553273353438121
+      },
+      {
+        "feature": "BUN",
+        "mean_absolute_contribution": 0.05307343088327135
+      },
+      {
+        "feature": "Region RWMA",
+        "mean_absolute_contribution": 0.04102712666292886
+      },
+      {
+        "feature": "Atypical",
+        "mean_absolute_contribution": 0.03896074856073984
+      },
+      {
+        "feature": "VHD",
+        "mean_absolute_contribution": 0.035301024930196045
+      },
+      {
+        "feature": "WBC",
+        "mean_absolute_contribution": 0.03209752873812217
+      },
+      {
+        "feature": "Weight",
+        "mean_absolute_contribution": 0.028622471414693477
+      },
+      {
+        "feature": "Systolic Murmur",
+        "mean_absolute_contribution": 0.026660409941918605
+      },
+      {
+        "feature": "Neut",
+        "mean_absolute_contribution": 0.02371479542749263
+      },
+      {
+        "feature": "Tinversion",
+        "mean_absolute_contribution": 0.02052603863749245
+      },
+      {
+        "feature": "HTN",
+        "mean_absolute_contribution": 0.01832711230696117
+      },
+      {
+        "feature": "PR",
+        "mean_absolute_contribution": 0.016561423840112405
+      },
+      {
+        "feature": "Sex",
+        "mean_absolute_contribution": 0.015512882649385816
+      },
+      {
+        "feature": "DLP",
+        "mean_absolute_contribution": 0.011276626613496276
+      },
+      {
+        "feature": "Function Class",
+        "mean_absolute_contribution": 0.011063722865606584
+      },
+      {
+        "feature": "Dyspnea",
+        "mean_absolute_contribution": 0.008291937319529912
+      },
+      {
+        "feature": "EX-Smoker",
+        "mean_absolute_contribution": 0.0078635273313554
+      },
+      {
+        "feature": "FH",
+        "mean_absolute_contribution": 0.007067460195598474
+      },
+      {
+        "feature": "St Depression",
+        "mean_absolute_contribution": 0.005845217515785247
+      },
+      {
+        "feature": "Edema",
+        "mean_absolute_contribution": 0.0056228877378686785
+      },
+      {
+        "feature": "DM",
+        "mean_absolute_contribution": 0.00558552870053326
+      },
+      {
+        "feature": "CVA",
+        "mean_absolute_contribution": 0.0046467892845489436
+      },
+      {
+        "feature": "Diastolic Murmur",
+        "mean_absolute_contribution": 0.0035062591088788385
+      },
+      {
+        "feature": "Obesity",
+        "mean_absolute_contribution": 0.00250141829463121
+      },
+      {
+        "feature": "St Elevation",
+        "mean_absolute_contribution": 0.0021317809028953143
+      },
+      {
+        "feature": "Q Wave",
+        "mean_absolute_contribution": 0.001937345077662325
+      },
+      {
+        "feature": "LVH",
+        "mean_absolute_contribution": 0.001845274572507939
+      },
+      {
+        "feature": "CRF",
+        "mean_absolute_contribution": 0.0014148125870385617
+      },
+      {
+        "feature": "Poor R Progression",
+        "mean_absolute_contribution": 0.0012446857707883764
+      },
+      {
+        "feature": "Thyroid Disease",
+        "mean_absolute_contribution": 0.0012066775136821996
+      },
+      {
+        "feature": "Lung rales",
+        "mean_absolute_contribution": 0.0009839423166102996
+      },
+      {
+        "feature": "Airway disease",
+        "mean_absolute_contribution": 0.0009213209337248711
+      },
+      {
+        "feature": "Weak Peripheral Pulse",
+        "mean_absolute_contribution": 0.000877035222866777
+      },
+      {
+        "feature": "LowTH Ang",
+        "mean_absolute_contribution": 0.00014367487575321075
+      },
+      {
+        "feature": "Current Smoker",
+        "mean_absolute_contribution": 0.0
+      },
+      {
+        "feature": "CHF",
+        "mean_absolute_contribution": 0.0
+      },
+      {
+        "feature": "Nonanginal",
+        "mean_absolute_contribution": 0.0
+      },
+      {
+        "feature": "Exertional CP",
+        "mean_absolute_contribution": 0.0
+      }
+    ]
+  },
+  "rca": {
+    "method": "tree_shap",
+    "population": "development",
+    "scale": "base_model_log_odds",
+    "features": [
+      {
+        "feature": "Age",
+        "mean_absolute_contribution": 0.3303949585621321
+      },
+      {
+        "feature": "Typical Chest Pain",
+        "mean_absolute_contribution": 0.2816053550578289
+      },
+      {
+        "feature": "ESR",
+        "mean_absolute_contribution": 0.19688246120158615
+      },
+      {
+        "feature": "Neut",
+        "mean_absolute_contribution": 0.18025604300575607
+      },
+      {
+        "feature": "DM",
+        "mean_absolute_contribution": 0.14680962379989732
+      },
+      {
+        "feature": "TG",
+        "mean_absolute_contribution": 0.12295640313222099
+      },
+      {
+        "feature": "Atypical",
+        "mean_absolute_contribution": 0.11377597813015967
+      },
+      {
+        "feature": "Lymph",
+        "mean_absolute_contribution": 0.08938928146983198
+      },
+      {
+        "feature": "HB",
+        "mean_absolute_contribution": 0.08655438394862308
+      },
+      {
+        "feature": "FBS",
+        "mean_absolute_contribution": 0.07843873813208516
+      },
+      {
+        "feature": "Dyspnea",
+        "mean_absolute_contribution": 0.07480587669080495
+      },
+      {
+        "feature": "WBC",
+        "mean_absolute_contribution": 0.05575997619959318
+      },
+      {
+        "feature": "Length",
+        "mean_absolute_contribution": 0.055172647721915984
+      },
+      {
+        "feature": "EF-TTE",
+        "mean_absolute_contribution": 0.05173518307542637
+      },
+      {
+        "feature": "PR",
+        "mean_absolute_contribution": 0.051301877254016734
+      },
+      {
+        "feature": "K",
+        "mean_absolute_contribution": 0.049250736531686774
+      },
+      {
+        "feature": "CR",
+        "mean_absolute_contribution": 0.04229032201089423
+      },
+      {
+        "feature": "BP",
+        "mean_absolute_contribution": 0.040318767970947245
+      },
+      {
+        "feature": "BBB",
+        "mean_absolute_contribution": 0.03952613212949059
+      },
+      {
+        "feature": "Weight",
+        "mean_absolute_contribution": 0.03624439714742747
+      },
+      {
+        "feature": "Sex",
+        "mean_absolute_contribution": 0.035361010056223253
+      },
+      {
+        "feature": "BMI",
+        "mean_absolute_contribution": 0.03518102099601049
+      },
+      {
+        "feature": "PLT",
+        "mean_absolute_contribution": 0.03315360814163213
+      },
+      {
+        "feature": "Function Class",
+        "mean_absolute_contribution": 0.030638817534775285
+      },
+      {
+        "feature": "Poor R Progression",
+        "mean_absolute_contribution": 0.029816242531079843
+      },
+      {
+        "feature": "Na",
+        "mean_absolute_contribution": 0.02955851828086997
+      },
+      {
+        "feature": "Region RWMA",
+        "mean_absolute_contribution": 0.027732903746850765
+      },
+      {
+        "feature": "VHD",
+        "mean_absolute_contribution": 0.027608923250433716
+      },
+      {
+        "feature": "HDL",
+        "mean_absolute_contribution": 0.02454518710851521
+      },
+      {
+        "feature": "BUN",
+        "mean_absolute_contribution": 0.016308832161551868
+      },
+      {
+        "feature": "LDL",
+        "mean_absolute_contribution": 0.01589321095293282
+      },
+      {
+        "feature": "Current Smoker",
+        "mean_absolute_contribution": 0.014187467292799353
+      },
+      {
+        "feature": "HTN",
+        "mean_absolute_contribution": 0.011941577194690772
+      },
+      {
+        "feature": "Nonanginal",
+        "mean_absolute_contribution": 0.009675691523071982
+      },
+      {
+        "feature": "FH",
+        "mean_absolute_contribution": 0.007674089459426125
+      },
+      {
+        "feature": "Diastolic Murmur",
+        "mean_absolute_contribution": 0.007399310460451228
+      },
+      {
+        "feature": "St Depression",
+        "mean_absolute_contribution": 0.007387362132480964
+      },
+      {
+        "feature": "Tinversion",
+        "mean_absolute_contribution": 0.004279729465911963
+      },
+      {
+        "feature": "DLP",
+        "mean_absolute_contribution": 0.0038105846278893908
+      },
+      {
+        "feature": "Obesity",
+        "mean_absolute_contribution": 0.0037566017690614383
+      },
+      {
+        "feature": "Airway disease",
+        "mean_absolute_contribution": 0.003456568691436851
+      },
+      {
+        "feature": "Q Wave",
+        "mean_absolute_contribution": 0.0034032772637181243
+      },
+      {
+        "feature": "Systolic Murmur",
+        "mean_absolute_contribution": 0.002027847457664774
+      },
+      {
+        "feature": "CRF",
+        "mean_absolute_contribution": 0.0017622570150706677
+      },
+      {
+        "feature": "Thyroid Disease",
+        "mean_absolute_contribution": 0.0012058138986506992
+      },
+      {
+        "feature": "LVH",
+        "mean_absolute_contribution": 0.001165289710437678
+      },
+      {
+        "feature": "Lung rales",
+        "mean_absolute_contribution": 0.0010722217753750464
+      },
+      {
+        "feature": "CHF",
+        "mean_absolute_contribution": 0.0007011121612485319
+      },
+      {
+        "feature": "Edema",
+        "mean_absolute_contribution": 0.0004266492673977365
+      },
+      {
+        "feature": "LowTH Ang",
+        "mean_absolute_contribution": 0.00019703684507964926
+      },
+      {
+        "feature": "EX-Smoker",
+        "mean_absolute_contribution": 0.0
+      },
+      {
+        "feature": "CVA",
+        "mean_absolute_contribution": 0.0
+      },
+      {
+        "feature": "Weak Peripheral Pulse",
+        "mean_absolute_contribution": 0.0
+      },
+      {
+        "feature": "Exertional CP",
+        "mean_absolute_contribution": 0.0
+      },
+      {
+        "feature": "St Elevation",
+        "mean_absolute_contribution": 0.0
+      }
+    ]
+  }
+}

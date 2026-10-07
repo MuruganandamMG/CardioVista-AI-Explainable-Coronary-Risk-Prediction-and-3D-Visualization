@@ -12,7 +12,7 @@ Dataset creators: R. Alizadehsani, M. Roshanzamir, and Z. Sani. Dataset license:
 
 ## Setup on Windows
 
-Use Python 3.11 or 3.12. From this project folder:
+Use Python 3.12 for the tested dependency lockfile and saved models. From this project folder:
 
 ```powershell
 py -3.12 -m venv .venv
@@ -38,6 +38,21 @@ The shared fixed split uses 242 development and 61 held-out patients, stratified
 Candidates are selected by ROC-AUC with a 0.01 tie preference for logistic regression, then log loss and lower capacity. Selected models compare raw probabilities with nested three-fold sigmoid calibration using development OOF predictions. Calibration is retained only for a Brier improvement of at least 0.005 without worse log loss. Per-target thresholds maximize development OOF F1, with recall and proximity to 0.5 resolving ties.
 
 Development scores are model-selection estimates. Final held-out reports include accuracy, precision, recall, specificity, F1, ROC-AUC, average precision, Brier score, log loss, confusion matrices, and conditional bootstrap intervals. The evaluated bundle stays fitted on development data; it is not silently replaced with an all-data refit.
+
+## Baseline-v1 results
+
+The exact saved bundle was evaluated once on 61 held-out patients:
+
+| Target | Model | Accuracy | Recall | Specificity | ROC-AUC |
+|---|---|---:|---:|---:|---:|
+| CAD | Logistic regression | 78.7% | 79.1% | 77.8% | 0.913 |
+| LAD | Logistic regression | 72.1% | 97.1% | 40.7% | 0.817 |
+| LCX | CatBoost | 60.7% | 76.9% | 48.6% | 0.702 |
+| RCA | CatBoost | 62.3% | 85.0% | 51.2% | 0.749 |
+
+The vessel operating points favor recall and produce many false positives. RCA accuracy is below its majority-class dummy baseline (67.2%), despite better ROC-AUC, positive-case recall, and probability loss. These thresholds were selected on development data, not adjusted after seeing these results. All four retained uncalibrated probabilities under the predeclared calibration rule.
+
+See `reports/baseline-v1/model_card.md` for approximate intervals and limitations, `test_metrics.json` for complete metrics/baselines, and `figures/` for the evaluation plots. Warm local HTTP prediction latency over 50 requests was about 60 ms median and 83 ms p95 on an Intel Core i7-13620H with 16 logical processors. The live API matched local inference, including explanations. Rebuilding each model from its saved parameters reproduced development probabilities exactly.
 
 ## Predict from a file
 

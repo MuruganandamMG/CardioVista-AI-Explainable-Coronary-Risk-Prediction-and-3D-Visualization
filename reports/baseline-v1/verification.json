@@ -1,0 +1,22 @@
+{
+  "development_refit_max_probability_difference": {
+    "cad": 0.0,
+    "lad": 0.0,
+    "lcx": 0.0,
+    "rca": 0.0
+  },
+  "artifact_hash": "4cf2e286ef9b8f10c4a414a2f9f68f98ee525dcc7a5e9b954b672a64faf8bba7",
+  "api_warm_median_ms": 60.1563,
+  "api_warm_p95_ms": 83.3198,
+  "api_requests": 50,
+  "processor": "Intel Core i7-13620H",
+  "logical_processors": 16,
+  "runtime_versions": {
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1",
+    "catboost": "1.2.10",
+    "joblib": "1.6.0"
+  },
+  "source_hash_unchanged": true
+}

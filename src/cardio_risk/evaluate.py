@@ -55,7 +55,7 @@ def plot_target(y, p, metrics, target, output):
         if mask.any():
             xp, yp = p[mask].mean(), y[mask].mean()
             axes[1, 1].scatter([xp], [yp])
-            axes[1, 1].annotate(f"n={mask.sum()}", (xp, yp), xytext=(4, 4), textcoords="offset points")
+            axes[1, 1].annotate(f"n={mask.sum()}", (xp, yp), xytext=(-6 if xp > .85 else 4, -14 if yp > .85 else 6), ha="right" if xp > .85 else "left", textcoords="offset points")
         else: empty.append(index+1)
     axes[1, 1].set(xlim=(0, 1), ylim=(0, 1), xlabel="Mean predicted probability", ylabel="Observed positive frequency", title=f"Reliability (5 bins); empty: {empty}")
     fig.suptitle(f"{target.upper()}: held-out evaluation, n={len(y)}")
