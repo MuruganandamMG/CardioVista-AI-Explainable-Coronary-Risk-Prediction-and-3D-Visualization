@@ -55,7 +55,7 @@ def build_pipeline(family: str, params: dict, schema: dict) -> Pipeline:
         model = LogisticRegression(max_iter=3000, solver="lbfgs", **params)
     elif family == "catboost":
         # Native CatBoost categorical names are the training-varying fields.
-        model = ClinicalCatBoost(**params)
+        model = ClinicalCatBoost(**{"verbose": False, "allow_writing_files": False, "thread_count": 4, **params})
     else:
         raise ValueError(f"Unknown model family: {family}")
     return Pipeline([*steps, ("model", model)])

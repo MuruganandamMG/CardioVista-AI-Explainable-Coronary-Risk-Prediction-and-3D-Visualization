@@ -5,6 +5,7 @@ __pycache__/
 tmp/
 .superpowers/
 artifacts/
+catboost_info/
 *.log
 data/raw/*.zip
 reports/*/test_predictions.csv

@@ -1,12 +1,13 @@
 import json
 import numpy as np
 import pytest
+from pathlib import Path
 
 
 def test_roundtrip_and_key_order(tmp_path, fitted_bundle, data):
     from cardio_risk.predict import save_bundle, load_bundle, predict_record
     X, _, _, _ = data
-    features = X.iloc[0].to_dict()
+    features = json.loads(Path("examples/synthetic_patient.json").read_text())["features"]
     before = predict_record(fitted_bundle, features)
     save_bundle(fitted_bundle, tmp_path / "bundle", fitted_bundle["metadata"])
     loaded = load_bundle(tmp_path / "bundle")
@@ -31,7 +32,7 @@ def test_manifest_tampering_and_missing_artifact(tmp_path, fitted_bundle):
 def test_score_explanations_and_missing_flag(fitted_bundle, data):
     from cardio_risk.predict import predict_record
     X, _, _, _ = data
-    features = X.iloc[0].to_dict()
+    features = json.loads(Path("examples/synthetic_patient.json").read_text())["features"]
     features["Weight"] = None
     result = predict_record(fitted_bundle, features, include_explanations=True)
     assert result["input_quality"]["imputed_features"] == ["Weight"]

@@ -1,4 +1,5 @@
 import pytest
+import json
 from pathlib import Path
 
 
@@ -6,7 +7,7 @@ def record_and_schema():
     from cardio_risk.data import load_dataset
     from cardio_risk.schema import build_schema
     X, _, _ = load_dataset(Path("data/raw/z_alizadeh_sani_extension.xlsx"))
-    return X.iloc[0].to_dict(), build_schema(X.iloc[:200])
+    return json.loads(Path("examples/synthetic_patient.json").read_text())["features"], build_schema(X.iloc[:200])
 
 
 def test_normalization_and_schema_coverage():

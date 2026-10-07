@@ -1,4 +1,6 @@
 import pytest
+import json
+from pathlib import Path
 from fastapi.testclient import TestClient
 
 
@@ -15,7 +17,7 @@ def test_health_schema_and_predictions(client, data):
     X, _, _, _ = data
     assert client.get("/health").json()["status"] == "ready"
     assert len(client.get("/schema").json()["features"]) == 55
-    result = client.post("/predict", json={"features": X.iloc[0].to_dict(), "include_explanations": True})
+    result = client.post("/predict", json={"features": json.loads(Path("examples/synthetic_patient.json").read_text())["features"], "include_explanations": True})
     assert result.status_code == 200
     body = result.json()
     assert list(body["predictions"]) == ["cad", "lad", "lcx", "rca"]
@@ -27,7 +29,7 @@ def test_health_schema_and_predictions(client, data):
 @pytest.mark.parametrize("case", ["omitted", "extra", "target", "string", "category", "nulls", "outer_extra"])
 def test_invalid_requests_return_422(client, data, case):
     X, _, _, _ = data
-    fields = X.iloc[0].to_dict()
+    fields = json.loads(Path("examples/synthetic_patient.json").read_text())["features"]
     payload = {"features": fields}
     if case == "omitted": fields.pop("Age")
     if case == "extra": fields["row_id"] = 4
@@ -49,7 +51,7 @@ def test_missing_artifacts_fail_startup(tmp_path):
 @pytest.mark.parametrize("field", ["Age", "Function Class"])
 def test_huge_integer_returns_validation_error(client, data, field):
     X, _, _, _ = data
-    features = X.iloc[0].to_dict()
+    features = json.loads(Path("examples/synthetic_patient.json").read_text())["features"]
     features[field] = 10**400
     result = client.post("/predict", json={"features": features})
     assert result.status_code == 422

@@ -19,3 +19,6 @@ Additional verification: independent four-target fitting and nested subset membe
 Final: minor (deferred): Starlette's TestClient emits a dependency deprecation warning for httpx; runtime inference is unaffected. The lockfile records the tested version.
 Final: Ruling: synthetic metadata lives in README and filename, not extra request fields, because the request schema intentionally forbids unknown fields. Cost: fixture consumers must read its documentation for context.
 Task 8: reproducibility docs and lockfile drafted; final results/latency pending training.
+Final fixes verified: full suite 57 passed, with one third-party TestClient deprecation warning. No test failures.
+Repository guide agent.md appeared during execution and was read/preserved; API/inference test inputs now use the documented synthetic example. Source workbook remains the training/audit input only.
+Ruling: related tasks were committed as coherent milestones rather than one commit per checkbox; the root repository initially had no history. Cost: commit boundaries combine several dependent components; tests and ledger preserve their checks.
