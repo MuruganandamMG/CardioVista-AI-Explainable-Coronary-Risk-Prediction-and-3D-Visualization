@@ -1,0 +1,391 @@
+{
+  "schema_version": "1.0",
+  "features": {
+    "Age": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 30.0,
+      "observed_max": 86.0
+    },
+    "Weight": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 48.0,
+      "observed_max": 120.0
+    },
+    "Length": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 145.0,
+      "observed_max": 188.0
+    },
+    "Sex": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "Male",
+        "Female"
+      ]
+    },
+    "BMI": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 18.36547291092746,
+      "observed_max": 40.90065778377467
+    },
+    "DM": {
+      "type": "binary",
+      "unit": null,
+      "observed_min": 0.0,
+      "observed_max": 1.0
+    },
+    "HTN": {
+      "type": "binary",
+      "unit": null,
+      "observed_min": 0.0,
+      "observed_max": 1.0
+    },
+    "Current Smoker": {
+      "type": "binary",
+      "unit": null,
+      "observed_min": 0.0,
+      "observed_max": 1.0
+    },
+    "EX-Smoker": {
+      "type": "binary",
+      "unit": null,
+      "observed_min": 0.0,
+      "observed_max": 1.0
+    },
+    "FH": {
+      "type": "binary",
+      "unit": null,
+      "observed_min": 0.0,
+      "observed_max": 1.0
+    },
+    "Obesity": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "CRF": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "CVA": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "Airway disease": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "Thyroid Disease": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "CHF": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "DLP": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "BP": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 90.0,
+      "observed_max": 180.0
+    },
+    "PR": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 60.0,
+      "observed_max": 110.0
+    },
+    "Edema": {
+      "type": "binary",
+      "unit": null,
+      "observed_min": 0.0,
+      "observed_max": 1.0
+    },
+    "Weak Peripheral Pulse": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "Lung rales": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "Systolic Murmur": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "Diastolic Murmur": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "Typical Chest Pain": {
+      "type": "binary",
+      "unit": null,
+      "observed_min": 0.0,
+      "observed_max": 1.0
+    },
+    "Dyspnea": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "Function Class": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ]
+    },
+    "Atypical": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "Nonanginal": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "Exertional CP": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "LowTH Ang": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "Q Wave": {
+      "type": "binary",
+      "unit": null,
+      "observed_min": 0.0,
+      "observed_max": 1.0
+    },
+    "St Elevation": {
+      "type": "binary",
+      "unit": null,
+      "observed_min": 0.0,
+      "observed_max": 1.0
+    },
+    "St Depression": {
+      "type": "binary",
+      "unit": null,
+      "observed_min": 0.0,
+      "observed_max": 1.0
+    },
+    "Tinversion": {
+      "type": "binary",
+      "unit": null,
+      "observed_min": 0.0,
+      "observed_max": 1.0
+    },
+    "LVH": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "Poor R Progression": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "Y"
+      ]
+    },
+    "BBB": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "N",
+        "LBBB",
+        "RBBB"
+      ]
+    },
+    "FBS": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 62.0,
+      "observed_max": 400.0
+    },
+    "CR": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 0.5,
+      "observed_max": 2.2
+    },
+    "TG": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 37.0,
+      "observed_max": 1050.0
+    },
+    "LDL": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 18.0,
+      "observed_max": 232.0
+    },
+    "HDL": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 15.9,
+      "observed_max": 111.0
+    },
+    "BUN": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 8.0,
+      "observed_max": 52.0
+    },
+    "ESR": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 1.0,
+      "observed_max": 90.0
+    },
+    "HB": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 9.0,
+      "observed_max": 17.6
+    },
+    "K": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 3.0,
+      "observed_max": 6.6
+    },
+    "Na": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 130.0,
+      "observed_max": 156.0
+    },
+    "WBC": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 3700.0,
+      "observed_max": 18000.0
+    },
+    "Lymph": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 7.0,
+      "observed_max": 60.0
+    },
+    "Neut": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 32.0,
+      "observed_max": 86.0
+    },
+    "PLT": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 25.0,
+      "observed_max": 742.0
+    },
+    "EF-TTE": {
+      "type": "numeric",
+      "unit": null,
+      "observed_min": 15.0,
+      "observed_max": 60.0
+    },
+    "Region RWMA": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "VHD": {
+      "type": "categorical",
+      "unit": null,
+      "allowed_values": [
+        "none",
+        "mild",
+        "moderate",
+        "severe"
+      ]
+    }
+  },
+  "max_missing": 11,
+  "units_note": "Units await independent verification from dataset documentation; do not infer units from magnitude."
+}

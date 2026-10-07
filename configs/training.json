@@ -1,0 +1,7 @@
+{
+  "data": "data/raw/z_alizadeh_sani_extension.xlsx",
+  "seed": 42,
+  "logistic_C": [0.1, 1.0, 10.0],
+  "catboost_depth": [3, 5],
+  "catboost_iterations": [200, 400]
+}
