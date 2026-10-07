@@ -2,6 +2,8 @@
 
 Explainable coronary disease classification in Python. A saved bundle predicts four binary labels: overall CAD and LAD, LCX, and RCA stenosis. The local API supplies probabilities, selected thresholds, input-quality flags, and optional patient explanations for a future dashboard and 3D heart viewer.
 
+For step-by-step Windows startup, saved-model prediction, API usage, and retraining instructions, see [HOW_TO_START.md](HOW_TO_START.md).
+
 ## Dataset
 
 The official [UCI Extension of Z-Alizadeh Sani dataset](https://archive.ics.uci.edu/dataset/411/extention+of+z+alizadeh+sani+dataset) is saved at `data/raw/z_alizadeh_sani_extension.xlsx`. It has 303 patients, 55 candidate clinical inputs, and four labels. Use worksheet `Sheet 1 - Table 1`.
